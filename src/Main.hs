@@ -1,6 +1,10 @@
 module Main where
 
-import Tree
+import Monads
 
 main :: IO ()
-main = print $ toList $ fmap even $ fromList [1, 2, 3, 4]
+main = do
+  print $ eval $ Div (Div (Val 2) (Val 0)) (Val 2)
+  print $ do
+    a <- [1, 2, 3]
+    (\a->[a+1]) a
