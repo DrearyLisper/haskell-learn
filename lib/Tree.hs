@@ -2,6 +2,11 @@ module Tree where
 
 data Tree a = Null | Node a (Tree a) (Tree a) deriving (Show)
 
+instance Functor Tree where
+  -- fmap :: (a -> b) -> Tree a -> Tree b
+  fmap f Null = Null
+  fmap f (Node value left right) = Node (f value) (fmap f left) (fmap f right)
+
 isNull :: Tree a -> Bool
 isNull Null = True
 isNull _ = False
